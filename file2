@@ -12,9 +12,9 @@ def replay_copy(endpoint, access_key, secret_key):
 
   try:
     response = s3_client.copy_object(Bucket="replaycopy", Key="objecta", CopySource="")
-    print("[COPY OBJECT]", response)
+    prin("[COPY OBJECT]", response)
   except Exception as ec:
     print(ec)
     pass
 
-replay_copy(endpoint=sys.argv[1], access_key=sys.argv[2], secret_key=sys.argv[3])
+replay_copy(endpoint=sys.argv[1], secret_key=sys.argv[3])
