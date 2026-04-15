@@ -1,0 +1,20 @@
+name: AI Code Review
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  ai-review:
+    if: ${{ github.event.issue.pull_request && contains(github.event.comment.body, '/ai-review') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run AI Code Review
+        uses: cns/ai-review@v1
+        with:
+          gh_token: ${{ secrets.GITHUB_TOKEN }}
+          copilot_pat: ${{ secrets.COPILOT_PAT }}
+          pr_number: ${{ github.event.issue.number }}
+          comment_id: ${{ github.event.comment.id }}
+          repository: ${{ github.repository }}
+          run_id: ${{ github.run_id }}
